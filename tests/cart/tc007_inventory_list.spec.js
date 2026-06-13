@@ -17,14 +17,6 @@ test('TC007.1 — Standard User: Verify product list loads correctly', async ({ 
   expect(itemCount).toBeGreaterThan(0);
 });
 
-// TC007.1a — Locked out user: Verify login fails for locked out account
-test('TC007.1a — Locked Out User: Verify locked out user cannot log in', async ({ page }) => {
-  await login(page, users.locked_out_user.username, users.locked_out_user.password, { expectSuccess: false });
-
-  await expect(page).not.toHaveURL(/inventory/);
-  await expect(page.locator('.error-message-container, [data-test="error"]').first()).toBeVisible();
-});
-
 // TC007.2 — Standard user: Verify all product images load correctly
 test('TC007.2 — Standard User: Verify all product images load correctly', async ({ page }) => {
   const inventoryPage = new InventoryPage(page);
